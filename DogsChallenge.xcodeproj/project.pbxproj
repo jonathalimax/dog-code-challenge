@@ -19,6 +19,13 @@
 		0172C23A277E3CEF00D3D29B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C239277E3CEF00D3D29B /* AppCoordinator.swift */; };
 		0172C23D277E3EBF00D3D29B /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C23C277E3EBF00D3D29B /* ViewCodable.swift */; };
 		0172C23F277E3FE600D3D29B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C23E277E3FE600D3D29B /* FeedView.swift */; };
+		0172C241277E6C5100D3D29B /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C240277E6C5100D3D29B /* ApiRouter.swift */; };
+		0172C244277E713B00D3D29B /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C243277E713B00D3D29B /* Breed.swift */; };
+		0172C246277E733200D3D29B /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C245277E733200D3D29B /* ApiError.swift */; };
+		0172C248277E738700D3D29B /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C247277E738700D3D29B /* ApiClient.swift */; };
+		0172C24A277E7A1300D3D29B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C249277E7A1300D3D29B /* Environment.swift */; };
+		0172C24D277E844000D3D29B /* TheDogApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C24C277E844000D3D29B /* TheDogApi.swift */; };
+		0172C250277E847200D3D29B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C24F277E847200D3D29B /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,13 @@
 		0172C239277E3CEF00D3D29B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0172C23C277E3EBF00D3D29B /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		0172C23E277E3FE600D3D29B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		0172C240277E6C5100D3D29B /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
+		0172C243277E713B00D3D29B /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		0172C245277E733200D3D29B /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		0172C247277E738700D3D29B /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		0172C249277E7A1300D3D29B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		0172C24C277E844000D3D29B /* TheDogApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDogApi.swift; sourceTree = "<group>"; };
+		0172C24F277E847200D3D29B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +157,12 @@
 		0172C228277E37ED00D3D29B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				0172C242277E712D00D3D29B /* Models */,
+				0172C240277E6C5100D3D29B /* ApiRouter.swift */,
+				0172C245277E733200D3D29B /* ApiError.swift */,
+				0172C247277E738700D3D29B /* ApiClient.swift */,
+				0172C24C277E844000D3D29B /* TheDogApi.swift */,
+				0172C24F277E847200D3D29B /* Reachability.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -159,9 +179,10 @@
 		0172C22A277E37F900D3D29B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0172C23B277E3EA800D3D29B /* ViewCode */,
 				0172C235277E3C8300D3D29B /* Coordinator */,
+				0172C251277E94B300D3D29B /* Environment */,
 				0172C236277E3C8D00D3D29B /* Extensions */,
+				0172C23B277E3EA800D3D29B /* ViewCode */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -241,6 +262,22 @@
 				0172C23C277E3EBF00D3D29B /* ViewCodable.swift */,
 			);
 			path = ViewCode;
+			sourceTree = "<group>";
+		};
+		0172C242277E712D00D3D29B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0172C243277E713B00D3D29B /* Breed.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0172C251277E94B300D3D29B /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				0172C249277E7A1300D3D29B /* Environment.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,11 +415,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0172C250277E847200D3D29B /* Reachability.swift in Sources */,
+				0172C248277E738700D3D29B /* ApiClient.swift in Sources */,
+				0172C24A277E7A1300D3D29B /* Environment.swift in Sources */,
+				0172C244277E713B00D3D29B /* Breed.swift in Sources */,
 				0172C23F277E3FE600D3D29B /* FeedView.swift in Sources */,
 				0172C238277E3C9B00D3D29B /* Coordinator.swift in Sources */,
+				0172C246277E733200D3D29B /* ApiError.swift in Sources */,
 				0172C1F5277E377300D3D29B /* AppDelegate.swift in Sources */,
 				0172C23A277E3CEF00D3D29B /* AppCoordinator.swift in Sources */,
 				0172C233277E38CB00D3D29B /* FeedViewController.swift in Sources */,
+				0172C24D277E844000D3D29B /* TheDogApi.swift in Sources */,
+				0172C241277E6C5100D3D29B /* ApiRouter.swift in Sources */,
 				0172C1F7277E377300D3D29B /* SceneDelegate.swift in Sources */,
 				0172C23D277E3EBF00D3D29B /* ViewCodable.swift in Sources */,
 			);
@@ -550,8 +594,10 @@
 		0172C21C277E377400D3D29B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = "519005cf-2424-4b81-ba27-b94301a62346";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://api.thedogapi.com/v1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S34WA7GG8R;
 				INFOPLIST_FILE = DogsChallenge/Resources/Info.plist;
@@ -569,8 +615,10 @@
 		0172C21D277E377400D3D29B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = "519005cf-2424-4b81-ba27-b94301a62346";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://api.thedogapi.com/v1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S34WA7GG8R;
 				INFOPLIST_FILE = DogsChallenge/Resources/Info.plist;
