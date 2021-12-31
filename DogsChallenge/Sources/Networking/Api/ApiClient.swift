@@ -1,9 +1,20 @@
 import Alamofire
 import Foundation
 
-class TheDogApi: ApiClient {
+protocol ApiClientProtocol {
+    
+    func requestDecodable<T: Decodable>(route: ApiRouter,
+                                        callback: @escaping (Result<T, ApiError>) -> Void)
+    
+}
+
+class ApiClient: ApiClientProtocol {
     
     private var reachability: Reachability = Reachability()
+    
+    private init() {}
+    
+    static var shared: ApiClientProtocol = ApiClient()
     
     func requestDecodable<T: Decodable>(route: ApiRouter,
                                         callback: @escaping (Result<T, ApiError>) -> Void) {

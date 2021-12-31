@@ -1,7 +1,7 @@
 import Alamofire
 import Foundation
 
-enum ApiRouter: URLRequestConvertible {
+enum TheDogApiRouter: ApiRouter {
     
     case getBreeds
     case searchBreeds(breed: String)
@@ -31,7 +31,7 @@ enum ApiRouter: URLRequestConvertible {
     
 }
 
-extension ApiRouter {
+extension TheDogApiRouter {
     
     private var method: HTTPMethod {
         switch self {
