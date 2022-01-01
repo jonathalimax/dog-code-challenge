@@ -51,6 +51,13 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>BASE_URL</key>
+		<string>$(BASE_URL)</string>
+		<key>API_KEY</key>
+		<string>$(API_KEY)</string>
+	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
