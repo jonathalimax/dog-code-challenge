@@ -9,6 +9,7 @@ class FeedItemViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.round(withRadius: 6)
         return imageView
     }()
     

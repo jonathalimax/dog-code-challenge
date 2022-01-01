@@ -43,6 +43,7 @@
 		0172C28527807B5100D3D29B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C28427807B5100D3D29B /* Reusable.swift */; };
 		0172C28A2780958100D3D29B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C2892780958100D3D29B /* FeedViewModel.swift */; };
 		0172C28D2780D33400D3D29B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C28C2780D33400D3D29B /* TabBarController.swift */; };
+		0172C28F2780E34C00D3D29B /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		0172C28427807B5100D3D29B /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		0172C2892780958100D3D29B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		0172C28C2780D33400D3D29B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 		0172C236277E3C8D00D3D29B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0172C250277E847200D3D29B /* Reachability.swift in Sources */,
+				0172C28F2780E34C00D3D29B /* UIView+Rounded.swift in Sources */,
 				0172C248277E738700D3D29B /* ApiClient.swift in Sources */,
 				0172C24A277E7A1300D3D29B /* Environment.swift in Sources */,
 				0172C28A2780958100D3D29B /* FeedViewModel.swift in Sources */,

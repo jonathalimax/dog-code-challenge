@@ -39,7 +39,6 @@ extension TabBarCoordinator {
         case .search:
             
             let searchViewController = UIViewController()
-            searchViewController.title = tabBarItem.title
             searchViewController.tabBarItem = tabBarItem.item
             searchViewController.view.backgroundColor = .white
             return searchViewController

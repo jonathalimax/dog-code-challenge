@@ -1,24 +1,21 @@
 import UIKit
 
-enum FeedViewCollectionType {
-    case list
-    case grid
-}
-
 class FeedView: UIView {
     
-    private var collectionType: FeedViewCollectionType
+    private var collectionViewMode: CollectionViewMode
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: buildCollectionLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
+        collectionView.register(FeedItemViewCell.self,
+                                forCellWithReuseIdentifier: FeedItemViewCell.identifier)
         return collectionView
     }()
     
-    init(collectionType: FeedViewCollectionType = .list) {
-        self.collectionType = collectionType
+    init(collectionType: CollectionViewMode) {
+        self.collectionViewMode = collectionType
         super.init(frame: .zero)
         buildViewCode()
     }
@@ -52,8 +49,8 @@ extension FeedView: ViewCodable {
 
 extension FeedView {
     
-    func updateCollectionLayout() {
-        collectionType = collectionType == .list ? .grid : .list
+    func updateCollectionLayout(_ viewMode: CollectionViewMode) {
+        self.collectionViewMode = viewMode
         collectionView.setCollectionViewLayout(buildCollectionLayout(), animated: true)
     }
     
@@ -61,7 +58,7 @@ extension FeedView {
         
         var groupCount: Int
         
-        switch collectionType {
+        switch collectionViewMode {
         case .list:
             groupCount = 1
         case .grid:

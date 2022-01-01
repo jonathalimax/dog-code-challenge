@@ -6,14 +6,43 @@ enum FeedSection {
     case main
 }
 
+enum CollectionViewMode {
+    case list
+    case grid
+}
+
 class FeedViewController: UIViewController {
     
     var feedView: FeedView
     var viewModel: FeedViewModel
     private lazy var dataSource = buildDataSource()
     
+    private var viewModeImage: UIImage? {
+        switch viewMode {
+        case .grid:
+            return UIImage(named: "grid_icon")
+        case .list:
+            return UIImage(named: "list_icon")
+        }
+    }
+    private var viewMode: CollectionViewMode
+    private lazy var orderBarButton: UIBarButtonItem = {
+        UIBarButtonItem(image: UIImage(named: "sort_icon"),
+                        style: .done,
+                        target: nil,
+                        action: nil)
+    }()
+    
+    private lazy var viewModeBarButton: UIBarButtonItem = {
+        UIBarButtonItem(image: viewModeImage,
+                        style: .done,
+                        target: self,
+                        action: #selector(updateCollectionLayout))
+    }()
+    
     init() {
-        feedView = FeedView()
+        viewMode = .list
+        feedView = FeedView(collectionType: viewMode)
         viewModel = FeedViewModel()
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,17 +58,13 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Visualização",
-                            style: .plain,
-                            target: self,
-                            action: #selector(updateCollectionLayout))
-        ]
-        
+        title = TabBarItems.feed.title        
         feedView.collectionView.delegate = self
-        feedView.collectionView.register(FeedItemViewCell.self,
-                                         forCellWithReuseIdentifier: FeedItemViewCell.identifier)
+
+        navigationItem.rightBarButtonItems = [
+            orderBarButton,
+            viewModeBarButton
+        ]
         
         viewModel.fetchBreeds { [weak self] breeds in
             var snapshot = Snapshot()
@@ -47,11 +72,20 @@ class FeedViewController: UIViewController {
             snapshot.appendItems(breeds)
             self?.dataSource.apply(snapshot, animatingDifferences: true)
         }
+        
     }
     
     @objc
     func updateCollectionLayout() {
-        feedView.updateCollectionLayout()
+        switch viewMode {
+        case .list:
+            viewMode = .grid
+        case .grid:
+            viewMode = .list
+        }
+        
+        viewModeBarButton.image = viewModeImage
+        feedView.updateCollectionLayout(viewMode)
     }
     
 }

@@ -25,7 +25,7 @@ enum TabBarItems {
     var icon: UIImage? {
         switch self {
         case .feed:
-            return UIImage(named: "list_icon")
+            return UIImage(named: "paw_icon")
         case .search:
             return UIImage(named: "search_icon")
         }
