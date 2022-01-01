@@ -1,4 +1,4 @@
-struct Breed: Decodable {
+struct Breed: Codable, Hashable {
     
     let id: Int
     let name: String
@@ -26,12 +26,12 @@ struct Breed: Decodable {
         case referenceImageID = "reference_image_id"
     }
  
-    struct Eight: Codable {
+    struct Eight: Codable, Hashable {
         let imperial: String
         let metric: String
     }
 
-    struct Image: Codable {
+    struct Image: Codable, Hashable {
         let id: String
         let url: String
         let width: Int

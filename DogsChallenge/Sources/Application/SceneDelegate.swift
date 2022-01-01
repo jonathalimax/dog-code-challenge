@@ -5,16 +5,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var coordinator: Coordinator?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         
-        coordinator = AppCoordinator()
-        coordinator?.start()
-
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        let navigationController = UINavigationController()
+        
         self.window = window
-        window.rootViewController = coordinator?.navigationController
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        
+        coordinator = AppCoordinator(navigationController)
+        coordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
