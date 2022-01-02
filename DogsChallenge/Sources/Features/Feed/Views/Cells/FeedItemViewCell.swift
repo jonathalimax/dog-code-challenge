@@ -5,7 +5,6 @@ class FeedItemViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .lightGray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -15,8 +14,9 @@ class FeedItemViewCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
+        titleLabel.font = .preferredFont(forTextStyle: .subheadline)
+        titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
         return titleLabel
     }()
     

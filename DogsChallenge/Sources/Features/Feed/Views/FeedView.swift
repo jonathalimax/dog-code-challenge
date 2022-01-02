@@ -2,7 +2,7 @@ import UIKit
 
 class FeedView: UIView {
     
-    private var collectionViewMode: CollectionViewMode
+    private var collectionViewMode: FeedViewMode
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
@@ -11,10 +11,12 @@ class FeedView: UIView {
         collectionView.backgroundColor = .white
         collectionView.register(FeedItemViewCell.self,
                                 forCellWithReuseIdentifier: FeedItemViewCell.identifier)
+        collectionView.register(LoaderViewCell.self,
+                                forCellWithReuseIdentifier: LoaderViewCell.identifier)
         return collectionView
     }()
     
-    init(collectionType: CollectionViewMode) {
+    init(collectionType: FeedViewMode) {
         self.collectionViewMode = collectionType
         super.init(frame: .zero)
         buildViewCode()
@@ -49,7 +51,7 @@ extension FeedView: ViewCodable {
 
 extension FeedView {
     
-    func updateCollectionLayout(_ viewMode: CollectionViewMode) {
+    func updateCollectionLayout(_ viewMode: FeedViewMode) {
         self.collectionViewMode = viewMode
         collectionView.setCollectionViewLayout(buildCollectionLayout(), animated: true)
     }
@@ -71,10 +73,12 @@ extension FeedView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(250))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalHeight(0.4))
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: groupCount)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item,
+                                                       count: groupCount)
         let section = NSCollectionLayoutSection(group: group)
         return UICollectionViewCompositionalLayout(section: section)
     }

@@ -1,4 +1,4 @@
-struct Breed: Codable, Hashable {
+struct Breed: Codable {
     
     let id: Int
     let name: String
@@ -37,5 +37,9 @@ struct Breed: Codable, Hashable {
         let width: Int
         let height: Int
     }
+    
+}
+
+extension Breed : Hashable {
     
 }

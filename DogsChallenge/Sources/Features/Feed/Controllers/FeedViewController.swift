@@ -2,30 +2,23 @@ import UIKit
 
 typealias Snapshot = NSDiffableDataSourceSnapshot<FeedSection, Breed>
 
-enum FeedSection {
-    case main
-}
-
-enum CollectionViewMode {
-    case list
-    case grid
-}
-
 class FeedViewController: UIViewController {
     
     var feedView: FeedView
     var viewModel: FeedViewModel
     private lazy var dataSource = buildDataSource()
     
+    private var viewMode: FeedViewMode
+    
     private var viewModeImage: UIImage? {
         switch viewMode {
         case .grid:
-            return UIImage(named: "grid_icon")
-        case .list:
             return UIImage(named: "list_icon")
+        case .list:
+            return UIImage(named: "grid_icon")
         }
     }
-    private var viewMode: CollectionViewMode
+    
     private lazy var orderBarButton: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(named: "sort_icon"),
                         style: .done,
@@ -41,7 +34,7 @@ class FeedViewController: UIViewController {
     }()
     
     init() {
-        viewMode = .list
+        viewMode = .grid
         feedView = FeedView(collectionType: viewMode)
         viewModel = FeedViewModel()
         super.init(nibName: nil, bundle: nil)
@@ -58,25 +51,24 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = TabBarItems.feed.title        
+        title = TabBarItems.feed.title
+        viewModel.delegate = self
         feedView.collectionView.delegate = self
-
+        
         navigationItem.rightBarButtonItems = [
             orderBarButton,
             viewModeBarButton
         ]
         
-        viewModel.fetchBreeds { [weak self] breeds in
-            var snapshot = Snapshot()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(breeds)
-            self?.dataSource.apply(snapshot, animatingDifferences: true)
-        }
-        
+        viewModel.fetchBreeds()
     }
     
+}
+
+extension FeedViewController {
+    
     @objc
-    func updateCollectionLayout() {
+    private func updateCollectionLayout() {
         switch viewMode {
         case .list:
             viewMode = .grid
@@ -88,15 +80,11 @@ class FeedViewController: UIViewController {
         feedView.updateCollectionLayout(viewMode)
     }
     
-}
-
-extension FeedViewController {
-    
-    func buildDataSource() -> UICollectionViewDiffableDataSource<FeedSection, Breed> {
+    private func buildDataSource() -> UICollectionViewDiffableDataSource<FeedSection, Breed> {
         
         return UICollectionViewDiffableDataSource(
             collectionView: feedView.collectionView,
-            cellProvider: {  collectionView, indexPath, breed in
+            cellProvider: { collectionView, indexPath, breed in
                 
                 guard let cell = collectionView
                         .dequeueReusableCell(withReuseIdentifier: FeedItemViewCell.identifier,
@@ -110,7 +98,34 @@ extension FeedViewController {
         )
         
     }
+}
+
+extension FeedViewController: FeedViewModelDelegate {
+    
+    func onFetchCompleted(response: DataResponse<[Breed]>?) {
+        guard let response = response else { return }
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(response.data)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func onFetchFailure() {}
     
 }
 
-extension FeedViewController: UICollectionViewDelegate {}
+extension FeedViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let response = viewModel.breedsResponse else { return }
+        
+        let scrollHeight = scrollView.contentSize.height - scrollView.frame.size.height
+        let reachedBottom = scrollView.contentOffset.y >= 0
+            && scrollView.contentOffset.y >= scrollHeight
+        
+        if reachedBottom && response.hasNexPage {
+            viewModel.fetchBreeds(loadingMore: true)
+        }
+    }
+    
+}
