@@ -45,7 +45,6 @@
 		0172C28D2780D33400D3D29B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C28C2780D33400D3D29B /* TabBarController.swift */; };
 		0172C28F2780E34C00D3D29B /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */; };
 		0172C29127811CBB00D3D29B /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172C29027811CBB00D3D29B /* ApiConstants.swift */; };
-		018C8FB12781CE0800AD1CEE /* LoaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FB02781CE0800AD1CEE /* LoaderViewCell.swift */; };
 		018C8FB42781E5BF00AD1CEE /* FeedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FB32781E5BF00AD1CEE /* FeedSection.swift */; };
 		018C8FB62781E5CD00AD1CEE /* FeedViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FB52781E5CD00AD1CEE /* FeedViewMode.swift */; };
 		018C8FB92782018200AD1CEE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FB82782018200AD1CEE /* SearchViewController.swift */; };
@@ -56,6 +55,8 @@
 		01DCC5912782245C00D51F55 /* BreedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5902782245C00D51F55 /* BreedDetailView.swift */; };
 		01DCC5932782246600D51F55 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5922782246600D51F55 /* BreedDetailViewController.swift */; };
 		01DCC5952782246E00D51F55 /* BreedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */; };
+		01DCC59827825A5900D51F55 /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC59727825A5900D51F55 /* StateView.swift */; };
+		01DCC59A27825B1A00D51F55 /* UICollection+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC59927825B1A00D51F55 /* UICollection+State.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +117,6 @@
 		0172C28C2780D33400D3D29B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
 		0172C29027811CBB00D3D29B /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
-		018C8FB02781CE0800AD1CEE /* LoaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewCell.swift; sourceTree = "<group>"; };
 		018C8FB32781E5BF00AD1CEE /* FeedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSection.swift; sourceTree = "<group>"; };
 		018C8FB52781E5CD00AD1CEE /* FeedViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewMode.swift; sourceTree = "<group>"; };
 		018C8FB82782018200AD1CEE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +127,8 @@
 		01DCC5902782245C00D51F55 /* BreedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailView.swift; sourceTree = "<group>"; };
 		01DCC5922782246600D51F55 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
 		01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewModel.swift; sourceTree = "<group>"; };
+		01DCC59727825A5900D51F55 /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
+		01DCC59927825B1A00D51F55 /* UICollection+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollection+State.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				0172C28E2780E34C00D3D29B /* UIView+Rounded.swift */,
+				01DCC59927825B1A00D51F55 /* UICollection+State.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -502,17 +505,9 @@
 		018C8FAD2781CDEE00AD1CEE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				018C8FAF2781CDFC00AD1CEE /* Cells */,
+				01DCC59627825A4700D51F55 /* View */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		018C8FAF2781CDFC00AD1CEE /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				018C8FB02781CE0800AD1CEE /* LoaderViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		018C8FB22781E5B500AD1CEE /* Enums */ = {
@@ -597,6 +592,14 @@
 				01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01DCC59627825A4700D51F55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC59727825A5900D51F55 /* StateView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -745,14 +748,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0172C250277E847200D3D29B /* Reachability.swift in Sources */,
+				01DCC59A27825B1A00D51F55 /* UICollection+State.swift in Sources */,
 				0172C28F2780E34C00D3D29B /* UIView+Rounded.swift in Sources */,
 				01DCC5932782246600D51F55 /* BreedDetailViewController.swift in Sources */,
 				0172C248277E738700D3D29B /* ApiClient.swift in Sources */,
 				0172C24A277E7A1300D3D29B /* Environment.swift in Sources */,
 				0172C28A2780958100D3D29B /* FeedViewModel.swift in Sources */,
+				01DCC59827825A5900D51F55 /* StateView.swift in Sources */,
 				0172C279277F7D3300D3D29B /* TabBarItems.swift in Sources */,
 				0172C244277E713B00D3D29B /* Breed.swift in Sources */,
-				018C8FB12781CE0800AD1CEE /* LoaderViewCell.swift in Sources */,
 				0172C27B277F7DD800D3D29B /* TabBarCoordinator.swift in Sources */,
 				018C8FB42781E5BF00AD1CEE /* FeedSection.swift in Sources */,
 				0172C23F277E3FE600D3D29B /* FeedView.swift in Sources */,
