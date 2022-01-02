@@ -11,8 +11,6 @@ class FeedView: UIView {
         collectionView.backgroundColor = .white
         collectionView.register(FeedItemViewCell.self,
                                 forCellWithReuseIdentifier: FeedItemViewCell.identifier)
-        collectionView.register(LoaderViewCell.self,
-                                forCellWithReuseIdentifier: LoaderViewCell.identifier)
         return collectionView
     }()
     
@@ -36,10 +34,10 @@ extension FeedView: ViewCodable {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: super.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: super.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: super.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: super.bottomAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     
