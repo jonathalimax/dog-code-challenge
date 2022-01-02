@@ -38,11 +38,12 @@ extension TabBarCoordinator {
             
         case .search:
             
-            let searchViewController = UIViewController()
-            searchViewController.tabBarItem = tabBarItem.item
-            searchViewController.view.backgroundColor = .white
-            return searchViewController
-            
+            let searchCoordinator = SearchCoordinator(navigationController)
+            searchCoordinator.start()
+            searchCoordinator.rootViewController?.tabBarItem = tabBarItem.item
+            addChildCoordinator(searchCoordinator)
+            return searchCoordinator.rootViewController
+                        
         }
     }
     
