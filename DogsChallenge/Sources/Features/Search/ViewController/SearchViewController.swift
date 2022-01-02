@@ -38,6 +38,7 @@ class SearchViewController: UIViewController {
         viewModel.delegate = self
         searchView.tableView.delegate = self
         setupTableView()
+        setState(.empty(title: nil))
     }
     
 }
@@ -47,7 +48,7 @@ extension SearchViewController {
     private func setupTableView() {
         var snapshot = SearchSnapshot()
         snapshot.appendSections([0])
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func buildDataSource() -> UITableViewDiffableDataSource<Int, Breed> {
@@ -74,8 +75,10 @@ extension SearchViewController {
 
 extension SearchViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedBreed = viewModel.breedsResponse?.data[indexPath.row] else {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        guard let selectedBreed = viewModel
+                .breedsResponse?.data[indexPath.row] else {
             return
         }
         viewModel.showBreedDetail(selectedBreed)
@@ -91,9 +94,15 @@ extension SearchViewController: SearchViewModelDelegate {
         snapshot.appendSections([0])
         snapshot.appendItems(response.data)
         dataSource.apply(snapshot, animatingDifferences: true)
+        setState(.success)
     }
     
-    func onFetchFailure() {}
+    func onFetchFailure() {
+        setState(.error(title: nil, tryAgainCompletion: { [weak self] in
+            guard let self = self else { return }
+            self.searchBarSearchButtonClicked(self.searchBarController.searchBar)
+        }))
+    }
     
 }
 
@@ -101,6 +110,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
+        setState(.loading)
         viewModel.searchBreed(by: searchText)
     }
     

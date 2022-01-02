@@ -68,6 +68,7 @@ class FeedViewController: UIViewController {
         
         feedView.collectionView.refreshControl = refreshControl
         viewModel.fetchBreeds(loadingMore: false)
+        setState(.loading)
     }
     
 }
@@ -129,9 +130,17 @@ extension FeedViewController: FeedViewModelDelegate {
         snapshot.appendSections([.main])
         snapshot.appendItems(response.data)
         dataSource.apply(snapshot, animatingDifferences: true)
+        setState(.success)
     }
     
-    func onFetchFailure() {}
+    func onFetchFailure() {
+        if viewModel.breedsResponse?.data == nil {
+            let tryAgainAction: (() -> Void) = { [weak self] in
+                self?.viewModel.fetchBreeds(loadingMore: false)
+            }
+            setState(.error(title: nil, tryAgainCompletion: tryAgainAction))
+        }
+    }
     
 }
 
@@ -139,7 +148,8 @@ extension FeedViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        guard let selectedBreed = viewModel.breedsResponse?.data[indexPath.row] else {
+        guard let selectedBreed = viewModel.breedsResponse?
+                .data[indexPath.row] else {
             return
         }
         viewModel.showBreedDetail(selectedBreed)
