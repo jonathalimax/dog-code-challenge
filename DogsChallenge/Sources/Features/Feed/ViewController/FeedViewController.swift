@@ -22,8 +22,8 @@ class FeedViewController: UIViewController {
     private lazy var orderBarButton: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(named: "sort_icon"),
                         style: .done,
-                        target: nil,
-                        action: nil)
+                        target: self,
+                        action: #selector(orderBreedsByName))
     }()
     
     private lazy var viewModeBarButton: UIBarButtonItem = {
@@ -90,6 +90,11 @@ extension FeedViewController {
         
         viewModeBarButton.image = viewModeImage
         feedView.updateCollectionLayout(viewMode)
+    }
+    
+    @objc
+    private func orderBreedsByName() {
+        viewModel.orderBreeds()
     }
     
     private func buildDataSource() -> UICollectionViewDiffableDataSource<FeedSection, Breed> {

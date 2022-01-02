@@ -15,6 +15,7 @@ protocol FeedViewModelProtocol {
     var breedsResponse: DataResponse<[Breed]>? { get }
     func fetchBreeds(loadingMore: Bool)
     func showBreedDetail(_ breed: Breed)
+    func orderBreeds()
 }
 
 class FeedViewModel: FeedViewModelProtocol {
@@ -26,6 +27,7 @@ class FeedViewModel: FeedViewModelProtocol {
     private(set) var breedsResponse: DataResponse<[Breed]>?
     
     private var isLoading: Bool = false
+    private var orderAscending: Bool = false
     
     init(service: BreedServiceProtocol = BreedService()) {
         self.service = service
@@ -69,6 +71,12 @@ class FeedViewModel: FeedViewModelProtocol {
     
     func showBreedDetail(_ breed: Breed) {
         coordinator?.feedViewModel(showBreedDetail: breed)
+    }
+    
+    func orderBreeds() {
+        breedsResponse?.data.sort { orderAscending ? $0.name < $1.name : $0.name > $1.name}
+        orderAscending = !orderAscending
+        delegate?.onFetchCompleted(response: breedsResponse)
     }
     
 }
