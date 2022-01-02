@@ -1,15 +1,28 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
+    var window: UIWindow?
+    var childCoordinators: [Coordinator] = []
+    var rootViewController: UIViewController?
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController = UINavigationController()) {
+    required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    func start() {
-        let feedViewController = FeedViewController()
-        navigationController.pushViewController(feedViewController, animated: false)
+    init(window: UIWindow) {
+        self.window = window
+        let navigationController = UINavigationController()
+        self.navigationController = navigationController
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
+    
+    func start() {
+        let tabBarCoordinator = TabBarCoordinator(navigationController)
+        tabBarCoordinator.start()
+        addChildCoordinator(tabBarCoordinator)
+        rootViewController = tabBarCoordinator.rootViewController
+    }
+    
 }

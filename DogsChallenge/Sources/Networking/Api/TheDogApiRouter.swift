@@ -3,7 +3,7 @@ import Foundation
 
 enum TheDogApiRouter: ApiRouter {
     
-    case getBreeds
+    case getBreeds(page: Int)
     case searchBreeds(breed: String)
     
     var baseUrl: String {
@@ -53,10 +53,13 @@ extension TheDogApiRouter {
     
     private var parameters: Parameters? {
         switch self {
+        case let .getBreeds(page):
+            return [
+                "page": page,
+                "limit": ApiConstants.dataResponseLimit
+            ]
         case let .searchBreeds(breed):
             return ["q": breed]
-        default:
-            return nil
         }
     }
     

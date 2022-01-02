@@ -1,0 +1,3 @@
+enum FeedSection {
+    case main
+}

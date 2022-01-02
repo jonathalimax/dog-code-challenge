@@ -1,7 +1,7 @@
-typealias BreedsResultType = (Result<[Breed], ApiError>) -> Void
+typealias BreedsResultType = (Result<DataResponse<[Breed]>, ApiError>) -> Void
 
 protocol BreedServiceProtocol {
-    func getBreeds(_ callback: @escaping BreedsResultType)
+    func getBreeds(page: Int, _ callback: @escaping BreedsResultType)
     func searchBreed(by name: String, _ callback: @escaping BreedsResultType)
 }
 
@@ -13,8 +13,8 @@ class BreedService: BreedServiceProtocol {
         self.api = api
     }
     
-    func getBreeds(_ callback: @escaping BreedsResultType) {
-        api.requestDecodable(route: TheDogApiRouter.getBreeds,
+    func getBreeds(page: Int, _ callback: @escaping BreedsResultType) {
+        api.requestDecodable(route: TheDogApiRouter.getBreeds(page: page),
                              callback: callback)
     }
     
