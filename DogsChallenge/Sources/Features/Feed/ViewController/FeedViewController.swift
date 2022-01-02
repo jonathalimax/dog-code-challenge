@@ -33,6 +33,8 @@ class FeedViewController: UIViewController {
                         action: #selector(updateCollectionLayout))
     }()
     
+    private lazy var refreshControl = UIRefreshControl()
+    
     init(_ viewModel: FeedViewModelProtocol) {
         viewMode = .grid
         feedView = FeedView(collectionType: viewMode)
@@ -60,12 +62,22 @@ class FeedViewController: UIViewController {
             viewModeBarButton
         ]
         
+        refreshControl.addTarget(self,
+                                 action: #selector(refreshCollection),
+                                 for: .valueChanged)
+        
+        feedView.collectionView.refreshControl = refreshControl
         viewModel.fetchBreeds(loadingMore: false)
     }
     
 }
 
 extension FeedViewController {
+    
+    @objc
+    private func refreshCollection() {
+        viewModel.fetchBreeds(loadingMore: false)
+    }
     
     @objc
     private func updateCollectionLayout() {
@@ -103,6 +115,10 @@ extension FeedViewController {
 extension FeedViewController: FeedViewModelDelegate {
     
     func onFetchCompleted(response: DataResponse<[Breed]>?) {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
         guard let response = response else { return }
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
