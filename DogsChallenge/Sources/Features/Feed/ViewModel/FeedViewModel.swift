@@ -1,17 +1,26 @@
 import Foundation
 
+protocol FeedViewModelNavigation: AnyObject {
+    func feedViewModel(showBreedDetail breed: Breed)
+}
+
 protocol FeedViewModelDelegate: AnyObject {
     func onFetchCompleted(response: DataResponse<[Breed]>?)
     func onFetchFailure()
 }
 
 protocol FeedViewModelProtocol {
+    var delegate: FeedViewModelDelegate? { get set }
+    var coordinator: FeedViewModelNavigation? { get set }
+    var breedsResponse: DataResponse<[Breed]>? { get }
     func fetchBreeds(loadingMore: Bool)
+    func showBreedDetail(_ breed: Breed)
 }
 
 class FeedViewModel: FeedViewModelProtocol {
     
     public weak var delegate: FeedViewModelDelegate?
+    public weak var coordinator: FeedViewModelNavigation?
     
     private var service: BreedServiceProtocol
     private(set) var breedsResponse: DataResponse<[Breed]>?
@@ -56,6 +65,10 @@ class FeedViewModel: FeedViewModelProtocol {
             
         }
         
+    }
+    
+    func showBreedDetail(_ breed: Breed) {
+        coordinator?.feedViewModel(showBreedDetail: breed)
     }
     
 }

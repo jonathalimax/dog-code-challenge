@@ -5,7 +5,7 @@ typealias Snapshot = NSDiffableDataSourceSnapshot<FeedSection, Breed>
 class FeedViewController: UIViewController {
     
     var feedView: FeedView
-    var viewModel: FeedViewModel
+    var viewModel: FeedViewModelProtocol
     private lazy var dataSource = buildDataSource()
     
     private var viewMode: FeedViewMode
@@ -33,10 +33,10 @@ class FeedViewController: UIViewController {
                         action: #selector(updateCollectionLayout))
     }()
     
-    init() {
+    init(_ viewModel: FeedViewModelProtocol) {
         viewMode = .grid
         feedView = FeedView(collectionType: viewMode)
-        viewModel = FeedViewModel()
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -60,7 +60,7 @@ class FeedViewController: UIViewController {
             viewModeBarButton
         ]
         
-        viewModel.fetchBreeds()
+        viewModel.fetchBreeds(loadingMore: false)
     }
     
 }
@@ -115,6 +115,14 @@ extension FeedViewController: FeedViewModelDelegate {
 }
 
 extension FeedViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard let selectedBreed = viewModel.breedsResponse?.data[indexPath.row] else {
+            return
+        }
+        viewModel.showBreedDetail(selectedBreed)
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let response = viewModel.breedsResponse else { return }
