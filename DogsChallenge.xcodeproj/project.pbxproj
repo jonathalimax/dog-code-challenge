@@ -53,6 +53,9 @@
 		018C8FBF27820D4500AD1CEE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FBE27820D4500AD1CEE /* SearchView.swift */; };
 		018C8FC227820F1D00AD1CEE /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FC127820F1D00AD1CEE /* SearchItemCell.swift */; };
 		018C8FC5278214C100AD1CEE /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C8FC4278214C100AD1CEE /* SearchCoordinator.swift */; };
+		01DCC5912782245C00D51F55 /* BreedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5902782245C00D51F55 /* BreedDetailView.swift */; };
+		01DCC5932782246600D51F55 /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5922782246600D51F55 /* BreedDetailViewController.swift */; };
+		01DCC5952782246E00D51F55 /* BreedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,9 @@
 		018C8FBE27820D4500AD1CEE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		018C8FC127820F1D00AD1CEE /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		018C8FC4278214C100AD1CEE /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		01DCC5902782245C00D51F55 /* BreedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailView.swift; sourceTree = "<group>"; };
+		01DCC5922782246600D51F55 /* BreedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
+		01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,9 +230,10 @@
 		0172C229277E37F500D3D29B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				0172C276277F7D0A00D3D29B /* TabBar */,
+				01DCC58C2782243300D51F55 /* BreedDetail */,
 				0172C22F277E38A000D3D29B /* Feed */,
 				0172C230277E38A400D3D29B /* Search */,
+				0172C276277F7D0A00D3D29B /* TabBar */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -558,6 +565,40 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		01DCC58C2782243300D51F55 /* BreedDetail */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC58E2782244900D51F55 /* View */,
+				01DCC58D2782244500D51F55 /* ViewController */,
+				01DCC58F2782244C00D51F55 /* ViewModel */,
+			);
+			path = BreedDetail;
+			sourceTree = "<group>";
+		};
+		01DCC58D2782244500D51F55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5922782246600D51F55 /* BreedDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		01DCC58E2782244900D51F55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5902782245C00D51F55 /* BreedDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01DCC58F2782244C00D51F55 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5942782246E00D51F55 /* BreedDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -705,6 +746,7 @@
 			files = (
 				0172C250277E847200D3D29B /* Reachability.swift in Sources */,
 				0172C28F2780E34C00D3D29B /* UIView+Rounded.swift in Sources */,
+				01DCC5932782246600D51F55 /* BreedDetailViewController.swift in Sources */,
 				0172C248277E738700D3D29B /* ApiClient.swift in Sources */,
 				0172C24A277E7A1300D3D29B /* Environment.swift in Sources */,
 				0172C28A2780958100D3D29B /* FeedViewModel.swift in Sources */,
@@ -716,6 +758,7 @@
 				0172C23F277E3FE600D3D29B /* FeedView.swift in Sources */,
 				0172C238277E3C9B00D3D29B /* Coordinator.swift in Sources */,
 				018C8FC5278214C100AD1CEE /* SearchCoordinator.swift in Sources */,
+				01DCC5912782245C00D51F55 /* BreedDetailView.swift in Sources */,
 				0172C268277F436A00D3D29B /* TheDogApiRouter.swift in Sources */,
 				0172C246277E733200D3D29B /* ApiError.swift in Sources */,
 				018C8FB62781E5CD00AD1CEE /* FeedViewMode.swift in Sources */,
@@ -725,6 +768,7 @@
 				0172C28D2780D33400D3D29B /* TabBarController.swift in Sources */,
 				018C8FBF27820D4500AD1CEE /* SearchView.swift in Sources */,
 				018C8FBC2782050D00AD1CEE /* SearchViewModel.swift in Sources */,
+				01DCC5952782246E00D51F55 /* BreedDetailViewModel.swift in Sources */,
 				0172C23A277E3CEF00D3D29B /* AppCoordinator.swift in Sources */,
 				0172C28527807B5100D3D29B /* Reusable.swift in Sources */,
 				0172C233277E38CB00D3D29B /* FeedViewController.swift in Sources */,

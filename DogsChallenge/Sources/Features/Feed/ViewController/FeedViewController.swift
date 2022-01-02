@@ -5,7 +5,7 @@ typealias Snapshot = NSDiffableDataSourceSnapshot<FeedSection, Breed>
 class FeedViewController: UIViewController {
     
     var feedView: FeedView
-    var viewModel: FeedViewModel
+    var viewModel: FeedViewModelProtocol
     private lazy var dataSource = buildDataSource()
     
     private var viewMode: FeedViewMode
@@ -22,8 +22,8 @@ class FeedViewController: UIViewController {
     private lazy var orderBarButton: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(named: "sort_icon"),
                         style: .done,
-                        target: nil,
-                        action: nil)
+                        target: self,
+                        action: #selector(orderBreedsByName))
     }()
     
     private lazy var viewModeBarButton: UIBarButtonItem = {
@@ -33,10 +33,12 @@ class FeedViewController: UIViewController {
                         action: #selector(updateCollectionLayout))
     }()
     
-    init() {
+    private lazy var refreshControl = UIRefreshControl()
+    
+    init(_ viewModel: FeedViewModelProtocol) {
         viewMode = .grid
         feedView = FeedView(collectionType: viewMode)
-        viewModel = FeedViewModel()
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -60,12 +62,22 @@ class FeedViewController: UIViewController {
             viewModeBarButton
         ]
         
-        viewModel.fetchBreeds()
+        refreshControl.addTarget(self,
+                                 action: #selector(refreshCollection),
+                                 for: .valueChanged)
+        
+        feedView.collectionView.refreshControl = refreshControl
+        viewModel.fetchBreeds(loadingMore: false)
     }
     
 }
 
 extension FeedViewController {
+    
+    @objc
+    private func refreshCollection() {
+        viewModel.fetchBreeds(loadingMore: false)
+    }
     
     @objc
     private func updateCollectionLayout() {
@@ -78,6 +90,11 @@ extension FeedViewController {
         
         viewModeBarButton.image = viewModeImage
         feedView.updateCollectionLayout(viewMode)
+    }
+    
+    @objc
+    private func orderBreedsByName() {
+        viewModel.orderBreeds()
     }
     
     private func buildDataSource() -> UICollectionViewDiffableDataSource<FeedSection, Breed> {
@@ -103,6 +120,10 @@ extension FeedViewController {
 extension FeedViewController: FeedViewModelDelegate {
     
     func onFetchCompleted(response: DataResponse<[Breed]>?) {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+        
         guard let response = response else { return }
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
@@ -115,6 +136,14 @@ extension FeedViewController: FeedViewModelDelegate {
 }
 
 extension FeedViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard let selectedBreed = viewModel.breedsResponse?.data[indexPath.row] else {
+            return
+        }
+        viewModel.showBreedDetail(selectedBreed)
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let response = viewModel.breedsResponse else { return }

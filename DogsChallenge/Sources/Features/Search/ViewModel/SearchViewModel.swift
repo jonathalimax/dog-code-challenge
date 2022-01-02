@@ -1,5 +1,9 @@
 import Foundation
 
+protocol SearchViewModelNavigation: AnyObject {
+    func searchViewModel(showBreedDetail breed: Breed)
+}
+
 protocol SearchViewModelDelegate: AnyObject {
     func onFetchCompleted(response: DataResponse<[Breed]>?)
     func onFetchFailure()
@@ -7,12 +11,17 @@ protocol SearchViewModelDelegate: AnyObject {
 
 protocol SearchViewModelProtocol {
     var delegate: SearchViewModelDelegate? { get set }
+    var coordinator: SearchViewModelNavigation? { get set }
+    var breedsResponse: DataResponse<[Breed]>? { get }
+    
     func searchBreed(by name: String)
+    func showBreedDetail(_ breed: Breed)
 }
 
 class SearchViewModel: SearchViewModelProtocol {
     
     weak var delegate: SearchViewModelDelegate?
+    weak var coordinator: SearchViewModelNavigation?
     
     private var service: BreedServiceProtocol
     private(set) var breedsResponse: DataResponse<[Breed]>?
@@ -37,5 +46,11 @@ class SearchViewModel: SearchViewModelProtocol {
             }
         }
     }
+    
+    
+    func showBreedDetail(_ breed: Breed) {
+        coordinator?.searchViewModel(showBreedDetail: breed)
+    }
+    
     
 }

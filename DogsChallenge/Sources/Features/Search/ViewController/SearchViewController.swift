@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
         return controller
     }()
     
-    init(viewModel: SearchViewModelProtocol = SearchViewModel()) {
+    init(_ viewModel: SearchViewModelProtocol) {
         self.viewModel = viewModel
         self.searchView = SearchView()
         super.init(nibName: nil, bundle: nil)
@@ -36,6 +36,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         title = TabBarItems.search.title
         viewModel.delegate = self
+        searchView.tableView.delegate = self
         setupTableView()
     }
     
@@ -67,6 +68,17 @@ extension SearchViewController {
             }
         )
         
+    }
+    
+}
+
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedBreed = viewModel.breedsResponse?.data[indexPath.row] else {
+            return
+        }
+        viewModel.showBreedDetail(selectedBreed)
     }
     
 }

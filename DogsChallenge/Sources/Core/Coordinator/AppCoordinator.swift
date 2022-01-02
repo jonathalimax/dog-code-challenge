@@ -14,6 +14,7 @@ class AppCoordinator: Coordinator {
         self.window = window
         let navigationController = UINavigationController()
         self.navigationController = navigationController
+        navigationController.view.backgroundColor = .white
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
