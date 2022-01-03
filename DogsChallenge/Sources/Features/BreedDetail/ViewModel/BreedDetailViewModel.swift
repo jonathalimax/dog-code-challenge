@@ -1,4 +1,3 @@
-
 class BreedDetailViewModel {
     
     var breed: Breed

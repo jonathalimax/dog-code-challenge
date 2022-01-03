@@ -10,14 +10,14 @@ class ApiClientMock: ApiClientProtocol {
     }
     
     func requestDecodable<T>(route: ApiRouter,
-                             callback: @escaping (Result<T, ApiError>) -> Void) where T : Decodable {
+                             callback: @escaping (Result<DataResponse<T>, ApiError>) -> Void) where T : Decodable {
         
         switch apiResultMock {
         case let .empty(data), let .success(data):
             
             do {
                 let response = try JSONDecoder().decode(T.self, from: data)
-                callback(.success(response))
+                callback(.success(DataResponse(data: response, headers: nil)))
             } catch {
                 callback(.failure(.invalidParse))
             }
