@@ -8,7 +8,7 @@ class SearchViewController: UIViewController {
     private var viewModel: SearchViewModelProtocol
     private lazy var dataSource = buildDataSource()
     
-    private lazy var searchBarController: UISearchController = {
+    private(set) lazy var searchBarController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.delegate = self
         controller.searchBar.placeholder = "Search breeds"

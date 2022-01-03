@@ -2,8 +2,14 @@ import UIKit
 
 extension UIViewController {
     
-    func setState(_ state: ViewState) {
+    var currentState: ViewState? {
+        let currentStateView = view.subviews
+            .filter{ $0 is StateView }.first as? StateView
         
+        return currentStateView?.state
+    }
+ 
+    func setState(_ state: ViewState) {
         let currentStateView = view.subviews
             .filter{ $0 is StateView }.first as? StateView
         

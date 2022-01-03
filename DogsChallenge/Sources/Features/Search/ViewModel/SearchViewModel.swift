@@ -52,5 +52,4 @@ class SearchViewModel: SearchViewModelProtocol {
         coordinator?.searchViewModel(showBreedDetail: breed)
     }
     
-    
 }

@@ -41,11 +41,11 @@ class BreedServiceSpec: QuickSpec {
                 
                 it("must return the breeds on the callback") {
                     
-                    sut.getBreeds { result in
+                    sut.getBreeds(page: 1) { result in
                         switch result {
-                        case let .success(breeds):
-                            expect(breeds).to(beAnInstanceOf([Breed].self))
-                            expect(breeds.count).toEventually(equal(2))
+                        case let .success(response):
+                            expect(response.data).to(beAnInstanceOf([Breed].self))
+                            expect(response.data.count).toEventually(equal(2))
                         case .failure:
                             fail("Unexpected result case")
                         }
@@ -66,10 +66,10 @@ class BreedServiceSpec: QuickSpec {
                     
                     sut.searchBreed(by: "Bulldog") { result in
                         switch result {
-                        case let .success(breeds):
-                            expect(breeds).toEventually(beAnInstanceOf([Breed].self))
-                            expect(breeds.count).toEventually(equal(1))
-                            expect(breeds.first?.name).toEventually(equal("Alapaha Blue Blood Bulldog"))
+                        case let .success(response):
+                            expect(response.data).toEventually(beAnInstanceOf([Breed].self))
+                            expect(response.data.count).toEventually(equal(1))
+                            expect(response.data.first?.name).toEventually(equal("Alapaha Blue Blood Bulldog"))
                         case .failure:
                             fail("Unexpected result case")
                         }
