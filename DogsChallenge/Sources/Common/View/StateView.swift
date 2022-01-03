@@ -9,7 +9,7 @@ enum ViewState {
 
 class StateView: UIView {
     
-    private var state: ViewState
+    private(set) var state: ViewState
     private var tryAgainCompletion: (() -> Void)?
     
     private lazy var contentStack: UIStackView = {

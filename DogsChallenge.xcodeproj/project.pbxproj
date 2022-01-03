@@ -62,6 +62,10 @@
 		01DCC5A9278294D500D51F55 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5A8278294D500D51F55 /* SearchViewModel.swift */; };
 		01DCC5AB2782954D00D51F55 /* SearchViewModelNavigationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5AA2782954D00D51F55 /* SearchViewModelNavigationMock.swift */; };
 		01DCC5AD2782955800D51F55 /* SearchViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5AC2782955800D51F55 /* SearchViewModelDelegateMock.swift */; };
+		01DCC5B12782998F00D51F55 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 01DCC5B02782998F00D51F55 /* SnapshotTesting */; };
+		01DCC5B5278299B700D51F55 /* BreedDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5B4278299B700D51F55 /* BreedDetailViewControllerSpec.swift */; };
+		01DCC5B827829BA700D51F55 /* SearchViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5B727829BA700D51F55 /* SearchViewControllerSpec.swift */; };
+		01DCC5BB2782A51900D51F55 /* FeedViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DCC5BA2782A51900D51F55 /* FeedViewControllerSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +134,9 @@
 		01DCC5A8278294D500D51F55 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		01DCC5AA2782954D00D51F55 /* SearchViewModelNavigationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelNavigationMock.swift; sourceTree = "<group>"; };
 		01DCC5AC2782955800D51F55 /* SearchViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelDelegateMock.swift; sourceTree = "<group>"; };
+		01DCC5B4278299B700D51F55 /* BreedDetailViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewControllerSpec.swift; sourceTree = "<group>"; };
+		01DCC5B727829BA700D51F55 /* SearchViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerSpec.swift; sourceTree = "<group>"; };
+		01DCC5BA2782A51900D51F55 /* FeedViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DCC5B12782998F00D51F55 /* SnapshotTesting in Frameworks */,
 				0172C25C277F40A200D3D29B /* Quick in Frameworks */,
 				0172C259277F406500D3D29B /* Nimble in Frameworks */,
 			);
@@ -593,6 +601,7 @@
 		01DCC59B2782864300D51F55 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				01DCC5B2278299A100D51F55 /* BreedDetail */,
 				01DCC5A7278294CB00D51F55 /* Search */,
 				01DCC59C2782864D00D51F55 /* Feed */,
 			);
@@ -602,6 +611,7 @@
 		01DCC59C2782864D00D51F55 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				01DCC5B92782A50D00D51F55 /* ViewController */,
 				01DCC59D2782865200D51F55 /* ViewModel */,
 			);
 			path = Feed;
@@ -626,6 +636,7 @@
 		01DCC5A7278294CB00D51F55 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				01DCC5B627829B9900D51F55 /* ViewController */,
 				01DCC5AE278297DD00D51F55 /* ViewModel */,
 			);
 			path = Search;
@@ -637,6 +648,38 @@
 				01DCC5A8278294D500D51F55 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01DCC5B2278299A100D51F55 /* BreedDetail */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5B3278299AB00D51F55 /* ViewController */,
+			);
+			path = BreedDetail;
+			sourceTree = "<group>";
+		};
+		01DCC5B3278299AB00D51F55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5B4278299B700D51F55 /* BreedDetailViewControllerSpec.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		01DCC5B627829B9900D51F55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5B727829BA700D51F55 /* SearchViewControllerSpec.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		01DCC5B92782A50D00D51F55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				01DCC5BA2782A51900D51F55 /* FeedViewControllerSpec.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -680,6 +723,7 @@
 			packageProductDependencies = (
 				0172C258277F406500D3D29B /* Nimble */,
 				0172C25B277F40A200D3D29B /* Quick */,
+				01DCC5B02782998F00D51F55 /* SnapshotTesting */,
 			);
 			productName = DogsChallengeTests;
 			productReference = 0172C207277E377400D3D29B /* DogsChallengeTests.xctest */;
@@ -717,6 +761,7 @@
 				0172C257277F406500D3D29B /* XCRemoteSwiftPackageReference "Nimble" */,
 				0172C25A277F40A200D3D29B /* XCRemoteSwiftPackageReference "Quick" */,
 				0172C25D277F40E300D3D29B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				01DCC5AF2782998F00D51F55 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 0172C1F2277E377300D3D29B /* Products */;
 			projectDirPath = "";
@@ -804,8 +849,11 @@
 				0172C26A277F449C00D3D29B /* ApiClientMock.swift in Sources */,
 				01DCC5AB2782954D00D51F55 /* SearchViewModelNavigationMock.swift in Sources */,
 				0172C270277F6F7700D3D29B /* JsonHelper.swift in Sources */,
+				01DCC5BB2782A51900D51F55 /* FeedViewControllerSpec.swift in Sources */,
 				01DCC5A1278288C800D51F55 /* FeedViewModelDelegateMock.swift in Sources */,
 				01DCC5A9278294D500D51F55 /* SearchViewModel.swift in Sources */,
+				01DCC5B827829BA700D51F55 /* SearchViewControllerSpec.swift in Sources */,
+				01DCC5B5278299B700D51F55 /* BreedDetailViewControllerSpec.swift in Sources */,
 				01DCC59F2782866600D51F55 /* FeedViewModelSpec.swift in Sources */,
 				0172C265277F420600D3D29B /* BreedServiceSpec.swift in Sources */,
 			);
@@ -1100,6 +1148,14 @@
 				minimumVersion = 7.1.2;
 			};
 		};
+		01DCC5AF2782998F00D51F55 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1122,6 +1178,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0172C25D277F40E300D3D29B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		01DCC5B02782998F00D51F55 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DCC5AF2782998F00D51F55 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
